@@ -6,5 +6,5 @@ import App from './components/App/App'; // import main component
 import registerServiceWorker from './registerServiceWorker'; // import cache helper
 
 
-ReactDOM.render(<App />, document.getElementById('root')); // render for App component
+ReactDOM.render(<App />, document.getElementsByClassName('root')[0]); // render for App component
 registerServiceWorker(); // call cache helper
