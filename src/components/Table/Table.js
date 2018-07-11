@@ -1,9 +1,11 @@
-import React from 'react'; 
+import React from 'react';
+import Column from '../Column/Column'
 
 function Table(props) {
-  return (
-    [props.data[0]]
-  );
+  var column = props.data;
+  <Column col = {column[0]}/>
+  return <div>hi</div>;
+  
 }
 
 export default Table;

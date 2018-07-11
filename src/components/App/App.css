@@ -31,3 +31,9 @@
   padding: 20px 0;
   border-radius: 8px;
 }
+
+.table {
+  border: 2px solid #ffffff;
+  color: #ffffff;
+  font-size: 30px;
+}
