@@ -1,28 +1,19 @@
 import React, { Component } from 'react'; 
 import './App.css';
+// Components
 import Table from '../Table/Table'
-import Column from '../Column/Column'
 
 class App extends Component {
   render() {
     var tableArr = [
       [1,-1,-1,1,1,1,-1],
       [0,1,-1,-1,-1,1,0],
-      [0,0,0,0,0,0,0],
-      [0,0,0,0,0,0,0],
-      [0,0,0,0,0,0,0],
-      [0,0,0,0,0,0,0]
+      [0,0,0,0,0,1,0],
+      [0,0,0,0,0,1,0],
+      [0,0,0,1,0,0,0],
+      [1,0,0,0,0,0,1]
   ];
-
-  var user = {
-    firstName: "Вася",
-    sayHi: function() {
-      alert( this.firstName );
-    }
-  };
   
-  setTimeout(user.sayHi(), 1000); // undefined (не Вася!)
-
     return (
       <div className="App col">
         <div className='row justify-content-between'>
@@ -37,16 +28,6 @@ class App extends Component {
 
           <div className='board'> {/* board */}
             <Table data={tableArr}/>
-            {/* <table className="table">
-              <tbody>
-                <tr><td>1</td><td>0</td><td>0</td><td>0</td><td>1</td><td>1</td><td>0</td></tr>
-                <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-                <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-                <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-                <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-                <tr><td></td><td></td><td></td><td>0</td><td>1</td><td></td><td></td></tr>
-              </tbody>
-            </table> */}
           </div>
 
           <div className='right col-2'> {/* right column */}
