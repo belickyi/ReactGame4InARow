@@ -7,15 +7,15 @@ class Column extends Component {
   render() {
     
     // Column array transform to div element
-    var cellArr = this.props.column.map((column) => { // [1, 0, 0, 0, 0, 0]
+    var cellArr = this.props.column.map((column, i) => { // [1, 0, 0, 0, 0, 0]
       return (
       // <div className='col-1'>
       //    <div> 1 </div>
       //    <div> 0 </div>
       //    ...     
       // </div>
-      <div className='col-1'>
-        {column.map((cell) => <div>{cell}</div>)}
+      <div className='col-1' key={`column-${i}`}>
+        {column.map((cell, i) => <div key={`cell-${i}`}>{cell}</div>)}
       </div>);
     })
 
