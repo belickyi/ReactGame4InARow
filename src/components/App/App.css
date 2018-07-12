@@ -17,6 +17,10 @@
   background-image: url(./board.png);
   width: 740px;
   margin-top: 35px;
+  padding: 30px;
+  color: #ffffff;
+  font-size: 30px;
+  height: 632px;
 }
 
 .left, .right {

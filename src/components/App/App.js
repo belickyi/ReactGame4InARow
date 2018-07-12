@@ -13,7 +13,7 @@ class App extends Component {
       [0,0,0,1,0,0,0],
       [1,0,0,0,0,0,1]
   ];
-  
+
     return (
       <div className="App col">
         <div className='row justify-content-between'>
@@ -27,6 +27,7 @@ class App extends Component {
           </div>
 
           <div className='board'> {/* board */}
+            {/* Pass table array to Table component */}
             <Table data={tableArr}/>
           </div>
 

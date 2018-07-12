@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-// Component
 
+// Gets array div element and render
 class Cell extends Component {
   render() {
     return (
