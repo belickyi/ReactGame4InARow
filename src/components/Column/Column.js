@@ -15,7 +15,7 @@ class Column extends Component {
       //    ...     
       // </div>
       <div className='col-1' key={`column-${i}`}>
-        {column.map((cell, i) => <div key={`cell-${i}`}>{cell}</div>)}
+        {column.map((cell, i) => <div className='cell' key={`cell-${i}`}>{cell}</div>)}
       </div>);
     })
 

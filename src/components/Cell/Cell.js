@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import '../Cell/Cell.css';
 
 // Gets array div element and render
 class Cell extends Component {

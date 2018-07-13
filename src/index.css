@@ -4,3 +4,10 @@ body {
   font-family: sans-serif;
   font-family: 'Montserrat', sans-serif;
 }
+.cell-red {
+  color: brown;
+}
+
+.cell-blue {
+  color: cadetblue;
+}

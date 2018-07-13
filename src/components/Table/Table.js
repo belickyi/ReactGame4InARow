@@ -4,9 +4,16 @@ import Column from '../Column/Column'
 
 // Gets table array, turn matrix, split it into columns
 class Table extends Component {
+  constructor(props) {
+    super(props)
+
+    this.state = {
+      isActive: false
+    }
+  }
+  
   render() {
     var column = [];
-
     // Turn matrix, split it into columns
     for (let i = 0; i < this.props.data[0].length; i++) {
       let col = this.props.data.map(cell => cell[i])

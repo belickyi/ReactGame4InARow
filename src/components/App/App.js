@@ -13,7 +13,6 @@ class App extends Component {
       [0,0,0,1,0,0,0],
       [1,0,0,0,0,0,1]
   ];
-
     return (
       <div className="App col">
         <div className='row justify-content-between'>
