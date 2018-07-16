@@ -3,50 +3,57 @@ import './App.css';
 // Components
 import Table from '../Table/Table'
 
-class App extends Component {
+// Main component
+
+export default class App extends Component {
 
   constructor() {
     super();
 
     this.state = {
-      board : [
-        [1,-1,-1,1,1,1,-1],
-        [0,1,-1,-1,-1,1,0],
-        [0,0,0,0,0,1,0],
-        [0,1,0,0,1,1,0],
-        [0,0,0,1,0,0,0],
-        [1,0,0,0,0,0,1]
-      ]
-    };
+      grid : [
+        [0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0],
+        [1, 1, 1, 1, 0, 0, 0],
+      ],
 
-    this.makeUp = this.makeUp.bind(this);
-  }
-  
-  //Restart game
+      countStep : 0
+    };
+  };
+
+  /*** 
+   * Function restart game
+  */
   restartGame() {
     this.setState({
-      board: [
-      [0, 0, 0, 0, 0, 0, 0],
-      [0, 0, 0, 0, 0, 0, 0],
-      [0, 0, 0, 0, 0, 0, 0],
-      [0, 0, 0, 0, 0, 0, 0],
-      [0, 0, 0, 0, 0, 0, 0],
-      [0, 0, 0, 0, 0, 0, 0],
-      ]
+      grid: [
+        [0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0],
+      ],
+      countStep : 0
     })
-  }
+  };
 
-  // This method gets columId and playerId
-  makeUp(columId, plaerId) {
-    this.state.board.map(function(column, i) {
-      if (columId == i) {
-        console.log(`Плеер № ${plaerId} кликнул по ${column}`)
-        column.map(() => {
-          
-        })
-      }
+  /****
+   * This function gets columId, playerId and change their
+   */
+  addStep(columId, playerId) {
+
+    alert('hi')
+
+    // Add sum step +1
+    this.setState({
+      countStep : this.state.countStep + 1
     })
-  }
+    console.log(this.state.countStep)
+  };
 
   render() {
     return (
@@ -63,21 +70,28 @@ class App extends Component {
 
           <div className='board'> {/* board */}
             {/* Pass table array to Table component */}
-            <Table data={this.state.board}/>
+            <Table data={this.state} onPress={this.addStep.bind(this)} />
           </div>
 
           <div className='right col-2'> {/* right column */}
             <img src="blue.png"></img>
             <div className="score">
               <span>Score </span>
-              <span>0</span>
-              
+              <span>0</span>              
             </div>
           </div>
+          
+          <div className='row col-12'> {/* button */}
+            <div className='col-2'>
+            </div>
+            <div className='mt-4'>
+              <button className='btn btn-primary' onClick={this.restartGame.bind(this)}>Restart game</button>
+            </div>
+          </div>
+
+
         </div>
       </div>
     );
   }
 }
-
-export default App;

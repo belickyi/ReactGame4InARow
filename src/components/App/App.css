@@ -20,7 +20,8 @@
   padding: 30px;
   color: #ffffff;
   font-size: 30px;
-  height: 632px;
+  height: 580px;
+  border-radius: 10px;
 }
 
 .left, .right {

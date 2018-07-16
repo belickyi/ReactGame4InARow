@@ -1,25 +1,38 @@
-import React, { Component } from 'react';
+import React from 'react';
 // Components
 import Cell from '../Cell/Cell'
 
 // Gets column array
-class Column extends Component {
-  render() {
-    // Column array transform to div element
-    var cellArr = this.props.trueArr.map((trueArr, i) => {
-      return (
-      <div className={`'col-1' ${i}`} key={`column-${i}`}>
-        {trueArr.map((cell, i) => <div className='cell' key={`cell-${i}`}>{cell}</div>)}
-      </div>);
-    })
 
-    // Pass new array to Cell component
+export default function Column(props) {
+  
+  var column = props.turnedArr.map((turnedArr, i) => {
     return (
-      <Cell cellArr = {cellArr} />
-    );
+      <div className={`'col-1' id-col='${i}'`} key={`column-${i}`}>
+        {turnedArr.map((cell, i) => <div onClick={props.onPress} className={`cell id-cell='${i}'`} key={`cell-${i}`}>{cell}</div>)}
+      </div>);
+  })
 
-  };
+  return (
+    <Cell column = {column} />
+  );
 
-};
+}
 
-export default Column;
+// export default class Column extends Component {
+
+//   fuck() {
+//     this.props.onPress('hi');
+//   }
+
+//   render() {
+//     var column = this.props.turnedArr.map((turnedArr, i) => {
+//       return (
+//         <div className={`'col-1' id-col='${i}'`} key={`column-${i}`}>
+//           {turnedArr.map((cell, i) => <div className={`cell id-cell='${i}' onClick=${this.fuck.bind(this)}`} key={`cell-${i}`}>{cell}</div>)}
+//         </div>);
+//     })
+//     return <Cell column = {column} />;
+//   }
+
+// }

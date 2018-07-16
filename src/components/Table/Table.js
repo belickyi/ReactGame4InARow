@@ -1,22 +1,21 @@
-import React, { Component } from 'react';
+import React from 'react';
 // Components
 import Column from '../Column/Column'
 
-// Gets table array, turn matrix, split it into columns
-class Table extends Component {
-  render() {
-    var trueArr = [];
-    // Turn matrix, split it into columns
-    for (let i = 0; i < this.props.data[0].length; i++) {
-      let col = this.props.data.map(cell => cell[i])
-      trueArr.push(col);
-    };
+// Gets table array, turn matrix
 
-    // Pass new array to Column component
-    return (
-      <Column trueArr={trueArr} />
-    );
+export default function Table(props) {
+
+  const turnedArr = [];
+
+  // Turn array
+  for (let i = 0; i < props.data.grid[0].length; i++) {
+    let col = props.data.grid.map(column => column[i])
+    turnedArr.push(col);
   };
-};
+  
+  return (
+    <Column turnedArr={turnedArr} onPress={props.onPress} />
+  );
 
-export default Table;
+}
