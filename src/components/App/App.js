@@ -17,7 +17,7 @@ export default class App extends Component {
         [0, 0, 0, 0, 0, 0, 0],
         [0, 0, 0, 0, 0, 0, 0],
         [0, 0, 0, 0, 0, 0, 0],
-        [1, 1, 1, 1, 0, 0, 0],
+        [1, 1, 1, 2, 1, 0, 0],
       ],
 
       countStep : 0
@@ -46,16 +46,28 @@ export default class App extends Component {
    */
   addStep(columId, playerId) {
 
-    alert('hi')
-
     // Add sum step +1
     this.setState({
       countStep : this.state.countStep + 1
-    })
-    console.log(this.state.countStep)
+    });
+
+    // PlayerID
+    this.state.countStep % 2 === 0 ? playerId = 1 : playerId = 2;
+
+    // Add step in grid
+    console.log(this.state.grid);
+
   };
 
   render() {
+
+    // Turn array
+    const turnedArr = [];
+    for (let i = 0; i < this.state.grid[0].length; i++) {
+      let col = this.state.grid.map(column => column[i])
+      turnedArr.push(col);
+    };
+    
     return (
       <div className="App col">
         <div className='row justify-content-between'>
@@ -70,7 +82,7 @@ export default class App extends Component {
 
           <div className='board'> {/* board */}
             {/* Pass table array to Table component */}
-            <Table data={this.state} onPress={this.addStep.bind(this)} />
+            <Table turnedArr={turnedArr} onPress={this.addStep.bind(this)} />
           </div>
 
           <div className='right col-2'> {/* right column */}

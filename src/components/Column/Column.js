@@ -1,38 +1,34 @@
-import React from 'react';
+import React, { Component } from 'react';
 // Components
 import Cell from '../Cell/Cell'
 
 // Gets column array
 
-export default function Column(props) {
+export default class Column extends Component {
   
-  var column = props.turnedArr.map((turnedArr, i) => {
+  render() {
+    let cells = this.props.turnedArr.map( (column, x) => {
+      return (
+        <div className={`'col-1' id-col='${x}'`} key={`column-${x}`}>
+
+          {column.map( (cell, y) => {
+            return <Cell key={`${x}-${y}`}
+              cell = {cell} 
+              x = {x} 
+              y = {y} 
+              onPress={this.props.onPress} />
+          } )}
+        
+        </div>
+      );
+    } );
+
     return (
-      <div className={`'col-1' id-col='${i}'`} key={`column-${i}`}>
-        {turnedArr.map((cell, i) => <div onClick={props.onPress} className={`cell id-cell='${i}'`} key={`cell-${i}`}>{cell}</div>)}
-      </div>);
-  })
+      <div className='row justify-content-between'>
+        {cells}
+      </div>
+    );
 
-  return (
-    <Cell column = {column} />
-  );
+  };
 
-}
-
-// export default class Column extends Component {
-
-//   fuck() {
-//     this.props.onPress('hi');
-//   }
-
-//   render() {
-//     var column = this.props.turnedArr.map((turnedArr, i) => {
-//       return (
-//         <div className={`'col-1' id-col='${i}'`} key={`column-${i}`}>
-//           {turnedArr.map((cell, i) => <div className={`cell id-cell='${i}' onClick=${this.fuck.bind(this)}`} key={`cell-${i}`}>{cell}</div>)}
-//         </div>);
-//     })
-//     return <Cell column = {column} />;
-//   }
-
-// }
+};
