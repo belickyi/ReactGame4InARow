@@ -12,12 +12,13 @@ export default class App extends Component {
 
     this.state = {
       grid : [
-        [0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0],
-        [1, 1, 1, 2, 1, 0, 0],
+        [0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0],
       ],
 
       countStep : 0
@@ -30,12 +31,13 @@ export default class App extends Component {
   restartGame() {
     this.setState({
       grid: [
-        [0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0],
       ],
       countStep : 0
     })
@@ -55,19 +57,21 @@ export default class App extends Component {
     this.state.countStep % 2 === 0 ? playerId = 1 : playerId = 2;
 
     // Add step in grid
-    console.log(this.state.grid);
+    let newArr = this.state.grid;
+    for (let i = 5; i >= 0; i--) {
+      if (newArr[columId][i] === 0) {
+        newArr[columId][i] = playerId
+        break;
+      }
+    }
+
+    this.setState({
+      grid: newArr
+    })
 
   };
 
   render() {
-
-    // Turn array
-    const turnedArr = [];
-    for (let i = 0; i < this.state.grid[0].length; i++) {
-      let col = this.state.grid.map(column => column[i])
-      turnedArr.push(col);
-    };
-    
     return (
       <div className="App col">
         <div className='row justify-content-between'>
@@ -82,7 +86,7 @@ export default class App extends Component {
 
           <div className='board'> {/* board */}
             {/* Pass table array to Table component */}
-            <Table turnedArr={turnedArr} onPress={this.addStep.bind(this)} />
+            <Table grid={this.state.grid} onPress={this.addStep.bind(this)} />
           </div>
 
           <div className='right col-2'> {/* right column */}
@@ -97,10 +101,9 @@ export default class App extends Component {
             <div className='col-2'>
             </div>
             <div className='mt-4'>
-              <button className='btn btn-primary' onClick={this.restartGame.bind(this)}>Restart game</button>
+              <button className='btn-lg btn-primary' onClick={this.restartGame.bind(this)}>New game</button>
             </div>
           </div>
-
 
         </div>
       </div>

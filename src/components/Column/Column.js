@@ -7,7 +7,7 @@ import Cell from '../Cell/Cell'
 export default class Column extends Component {
   
   render() {
-    let cells = this.props.turnedArr.map( (column, x) => {
+    let cells = this.props.grid.map( (column, x) => {
       return (
         <div className={`'col-1' id-col='${x}'`} key={`column-${x}`}>
 

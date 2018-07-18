@@ -7,7 +7,7 @@ import Column from '../Column/Column'
 export default function Table(props) {
 
   return (
-    <Column turnedArr={props.turnedArr} onPress={props.onPress} />
+    <Column grid={props.grid} onPress={props.onPress} />
   );
 
 }

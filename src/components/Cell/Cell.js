@@ -12,7 +12,7 @@ export default class Cell extends Component {
   render() {
 
     return (
-      <div className={`cell id-cell='${this.props.y}'`} key={`cell-${this.props.y}`} onClick={this.addCell.bind(this)}>
+      <div className={`cell ${'cell-dark'} id-cell='${this.props.y}'`} key={`cell-${this.props.y}`} onClick={this.addCell.bind(this)}>
         {this.props.cell}
       </div>);
 
