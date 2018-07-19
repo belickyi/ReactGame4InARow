@@ -1,7 +1,7 @@
 .App {
   text-align: center;
   background-image: url(./bg.png);
-  height: 700px;
+  height: 770px;
   border-radius: 5px;
   border-radius: 2px;
   box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
@@ -13,14 +13,28 @@
   margin: 0 auto;
 }
 
+.red{
+  width: 80px;
+  height: 80px;
+  background-image: url(./red.png);
+  margin: 0 auto;
+}
+
+.blue{
+  width: 80px;
+  height: 80px;
+  background-image: url(./blue.png);
+  margin: 0 auto;
+}
+
 .board {
   background-image: url(./board.png);
   width: 740px;
   margin-top: 35px;
-  padding: 30px;
+  padding: 40px 50px;
   color: #ffffff;
   font-size: 30px;
-  height: 580px;
+  height: 640px;
   border-radius: 10px;
 }
 

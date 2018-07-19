@@ -77,7 +77,7 @@ export default class App extends Component {
         <div className='row justify-content-between'>
 
           <div className='left col-2'> {/* left column */}
-            <img src="red.png"></img>
+            <div className='red'></div>
             <div className="score">
               <span>Score </span>
               <span>0</span>
@@ -90,7 +90,7 @@ export default class App extends Component {
           </div>
 
           <div className='right col-2'> {/* right column */}
-            <img src="blue.png"></img>
+            <div className='blue'></div>
             <div className="score">
               <span>Score </span>
               <span>0</span>              

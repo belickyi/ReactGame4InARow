@@ -11,9 +11,18 @@ export default class Cell extends Component {
 
   render() {
 
+    var color;
+    if (this.props.cell === 1) {
+      color = 'cell-red';
+    } else if (this.props.cell === 2) {
+      color = 'cell-blue';
+    } else {
+      color = 'cell-dark';
+    }
+
     return (
-      <div className={`cell ${'cell-dark'} id-cell='${this.props.y}'`} key={`cell-${this.props.y}`} onClick={this.addCell.bind(this)}>
-        {this.props.cell}
+      <div className={`cell ${color} id-cell='${this.props.y}'`} key={`cell-${this.props.y}`} onClick={this.addCell.bind(this)}>
+        <div className="cellDispleyNone">{this.props.cell}</div>
       </div>);
 
   }

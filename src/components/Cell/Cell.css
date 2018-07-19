@@ -2,17 +2,25 @@
   border-radius: 50%;
   height: 80px;
   width: 80px;
-  margin-bottom: 5px;
+  margin-bottom: 15px;
+  cursor: pointer;
+}
+
+.cellDispleyNone{
+  display: none;
 }
 
 .cell-dark {
   background-color: #313A3F;
+  color: transparent;
 }
 
 .cell-red {
-  color: brown;
+  background-image: url(./red.png);
+  color: transparent;
 }
 
 .cell-blue {
-  color: cadetblue;
+  background-image: url(./blue.png);
+  color: transparent;
 }
