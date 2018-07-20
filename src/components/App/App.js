@@ -64,10 +64,28 @@ export default class App extends Component {
         break;
       }
     }
-
     this.setState({
       grid: newArr
     })
+
+    // Search for in a row
+    var lastCell = 0;
+
+    this.state.grid.forEach(col => {
+      let playerCount = 0;
+        col.forEach(cell => {
+
+          if ( cell != 0 ) {
+            let playerCount = playerCount + 1;
+          } else if( playerCount == 4 ) {
+            alert(`Игрок № ${cell} победил! Ураа!!!!!!`)
+          } else {
+
+          };
+          lastCell = cell;
+        });
+
+    });
 
   };
 
