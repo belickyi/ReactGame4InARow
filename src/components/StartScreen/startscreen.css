@@ -1,0 +1,30 @@
+.wrapper {
+    margin: 0 auto;
+    width: 500px;
+}
+
+.wra {
+    height: 100vh;
+    margin: 0 auto;
+  }
+
+.modal-header {
+    display: inline-block; 
+}
+.modal-content {
+    background-color:#f8fafb;
+}
+
+.red{
+    width: 80px;
+    height: 80px;
+    background-image: url(../Board/red.png);
+    margin: 0 auto;
+  }
+
+  .blue{
+    width: 80px;
+    height: 80px;
+    background-image: url(../Board/blue.png);
+    margin: 0 auto;
+  }

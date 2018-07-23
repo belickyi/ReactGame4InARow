@@ -8,11 +8,6 @@
   transition: all 0.3s cubic-bezier(.25,.8,.25,1);
 }
 
-.root {
-  height: 100vh;
-  margin: 0 auto;
-}
-
 .red{
   width: 80px;
   height: 80px;

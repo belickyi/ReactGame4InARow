@@ -1,11 +1,12 @@
-import React, { Component } from 'react'; 
-import './App.css';
+import React, { Component } from 'react';
+import './Board.css';
+import { Redirect } from 'react-router-dom';
 // Components
-import Table from '../Table/Table'
+import Table from '../Table/Table';
 
 // Main component
 
-export default class App extends Component {
+export default class Board extends Component {
 
   constructor() {
     super();
@@ -70,19 +71,11 @@ export default class App extends Component {
 
     // Search for in a row
     var lastCell = 0;
-
+    var inRow = 0;
+    
     this.state.grid.forEach(col => {
-      let playerCount = 0;
         col.forEach(cell => {
-
-          if ( cell != 0 ) {
-            let playerCount = playerCount + 1;
-          } else if( playerCount == 4 ) {
-            alert(`Игрок № ${cell} победил! Ураа!!!!!!`)
-          } else {
-
-          };
-          lastCell = cell;
+          
         });
 
     });
@@ -90,6 +83,10 @@ export default class App extends Component {
   };
 
   render() {
+    const {state} = this.props.location;
+    if (!state || !state.fromStartScreen) {
+      return (<Redirect to="/" />);
+    }
     return (
       <div className="App col">
         <div className='row justify-content-between'>
