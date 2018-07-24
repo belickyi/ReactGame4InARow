@@ -9,7 +9,7 @@ export default class StartScreen extends Component {
     super();
 
     this.state = {
-      userName1: '',
+      userName: '',
       userName2: ''
     };
 
@@ -22,8 +22,6 @@ export default class StartScreen extends Component {
   }
   
   render() {
-    console.log(this.state.userName);
-    
     return (
       <div>
         <div className="modal-dialog cascading-modal" role="document">
@@ -59,7 +57,7 @@ export default class StartScreen extends Component {
                 <div className="text-center mt-4 mb-2">
                   <Link to={{
                     pathname: '/board',
-                    state: {fromStartScreen: true}
+                    state: {fromStartScreen: true, userName: this.state.userName}
                     }}>
                     <button className="btn btn-primary">Новая игра</button>
                   </Link>

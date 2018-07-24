@@ -69,16 +69,62 @@ export default class Board extends Component {
       grid: newArr
     })
 
-    // Search for in a row
-    var lastCell = 0;
-    var inRow = 0;
-    
-    this.state.grid.forEach(col => {
-        col.forEach(cell => {
-          
-        });
+    // Search 4 in a column
+    this.state.grid.forEach((column) => { // [0, 1, 0, 0, 0, 0]
+      let lastCell = 0; // Предыдущая
+      let inRow = 0; // Сколько вхождений
 
+      column.forEach((cell) => { // [1]
+
+        if (cell === lastCell & cell !== 0 ) { // Если ячейка ровна предыдущей inRow++
+          inRow++;
+          if (inRow == 3) { 
+            alert(`URAAAA ${cell}`);
+            return this.restartGame();
+          }
+        } else {
+          inRow = 0;
+        };
+        lastCell = cell;
+
+      });
+      
     });
+
+    // Search 4 in a row
+    for (let i = 0; i < this.state.grid[0].length; i++) { // [0, 1, 0, 0, 0, 0, 0]
+      let lastCell = 0; // Предыдущая
+      let inRow = 0; // Сколько вхождений
+
+      for (let index = 0; index < this.state.grid.length; index++) { // [0]
+        let cell = this.state.grid[index][i];
+
+        if (cell === lastCell & cell !== 0 ) { // Если ячейка ровна предыдущей inRow++
+          inRow++;
+          if (inRow == 3) { 
+            alert(`URAAAA ${cell}`);
+            return this.restartGame();
+          }
+        } else {
+          inRow = 0;
+        };
+        lastCell = cell;
+      }
+      
+    }
+
+    // Search 4 in a diagonal
+    for (let i = 0; i < this.state.grid[0].length; i++) { // [0, 1, 0, 0, 0, 0, 0]
+      let lastCell = 0; // Предыдущая
+      let inRow = 0; // Сколько вхождений
+
+      for (let index = 0; index < this.state.grid.length; index++) {
+        let cell = this.state.grid[index][i];
+      };
+
+    };
+
+
 
   };
 
@@ -94,6 +140,8 @@ export default class Board extends Component {
           <div className='left col-2'> {/* left column */}
             <div className='red'></div>
             <div className="score">
+              <span className='name'>{`${state.userName}:`}</span>
+              <br></br>
               <span>Score </span>
               <span>0</span>
             </div>
@@ -107,6 +155,8 @@ export default class Board extends Component {
           <div className='right col-2'> {/* right column */}
             <div className='blue'></div>
             <div className="score">
+              <span className='name'>{`${state.userName2}:`}</span>
+              <br></br>
               <span>Score </span>
               <span>0</span>              
             </div>
