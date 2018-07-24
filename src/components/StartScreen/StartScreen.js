@@ -9,17 +9,26 @@ export default class StartScreen extends Component {
     super();
 
     this.state = {
-      userName: '',
+      userName1: '',
       userName2: ''
     };
 
+    this.setUserName1 = this.setUserName1.bind(this);
+    this.setUserName2 = this.setUserName2.bind(this);
+
   };
 
-  setUserName(event) {
+  setUserName1(event) {
     this.setState({
-        userName: event.target.value
-    });
-  }
+      userName1: event.target.value
+    })
+  };
+
+  setUserName2(event) {
+    this.setState({
+      userName2: event.target.value
+    })
+  };
   
   render() {
     return (
@@ -32,10 +41,11 @@ export default class StartScreen extends Component {
               </div>
 
               <div className="modal-body">
+
                 <div className='row mt-4'>
                   <div className='col-6'>
                     <label htmlFor="defaultFormNameModalEx">Имя игрока № 1</label>
-                    <input type="text" id="defaultFormNameModalEx" className="form-control form-control-sm" value={this.state.userName1} onChange={this.setUserName.bind(this)}></input>
+                    <input type="text" id="defaultFormNameModalEx" className="form-control form-control-sm" value={this.state.userName1} onChange={this.setUserName1} required></input>
                     <br></br>
                   </div>
                   <div className='col-6'>
@@ -46,7 +56,7 @@ export default class StartScreen extends Component {
                 <div className='row mt-4'>
                   <div className='col-6'>
                     <label htmlFor="defaultFormNameModalEx">Имя игрока № 2</label>
-                    <input type="text" id="defaultFormNameModalEx" className="form-control form-control-sm" value={this.state.userName2} onChange={this.setUserName.bind(this)}></input>
+                    <input type="text" id="defaultFormNameModalEx" className="form-control form-control-sm" value={this.state.userName2} onChange={this.setUserName2} required></input>
                     <br></br>
                   </div>
                   <div className='col-6'>
@@ -57,15 +67,20 @@ export default class StartScreen extends Component {
                 <div className="text-center mt-4 mb-2">
                   <Link to={{
                     pathname: '/board',
-                    state: {fromStartScreen: true, userName: this.state.userName}
+                    state: {
+                      fromStartScreen: true, 
+                      userName1: this.state.userName1, 
+                      userName2: this.state.userName2
+                    }
                     }}>
                     <button className="btn btn-primary">Новая игра</button>
                   </Link>
                 </div>
+
               </div>
 
             </div>
-          </div>
+        </div>
       </div>
     );
   }

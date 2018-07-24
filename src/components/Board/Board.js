@@ -114,12 +114,23 @@ export default class Board extends Component {
     }
 
     // Search 4 in a diagonal
-    for (let i = 0; i < this.state.grid[0].length; i++) { // [0, 1, 0, 0, 0, 0, 0]
+    for (let x = 0; x < this.state.grid[0].length; x++) { // [0, 1, 0, 0, 0, 0, 0]
       let lastCell = 0; // Предыдущая
       let inRow = 0; // Сколько вхождений
 
-      for (let index = 0; index < this.state.grid.length; index++) {
-        let cell = this.state.grid[index][i];
+      for (let y = 0; y < this.state.grid.length; y++) {
+        let cell = this.state.grid[x][y];
+
+        if (cell === lastCell & cell !== 0 ) { // Если ячейка ровна предыдущей inRow++
+          inRow++;
+          if (inRow == 3) { 
+            alert(`URAAAA ${cell}`);
+            return this.restartGame();
+          }
+        } else {
+          inRow = 0;
+        };
+        lastCell = cell;
       };
 
     };
@@ -140,7 +151,7 @@ export default class Board extends Component {
           <div className='left col-2'> {/* left column */}
             <div className='red'></div>
             <div className="score">
-              <span className='name'>{`${state.userName}:`}</span>
+              <span className='name'>{`${state.userName1}:`}</span>
               <br></br>
               <span>Score </span>
               <span>0</span>
