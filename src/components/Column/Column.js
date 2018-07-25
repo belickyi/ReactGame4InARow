@@ -7,11 +7,13 @@ import Cell from '../Cell/Cell'
 export default class Column extends Component {
   
   render() {
-    let cells = this.props.grid.map( (column, x) => {
+    let cells = this.props.grid.map( (column, x) => { 
+      // [0,0,0,0,0,1]
       return (
         <div className={`'col-1' id-col='${x}'`} key={`column-${x}`}>
 
           {column.map( (cell, y) => {
+            // [1]
             return <Cell key={`${x}-${y}`}
               cell = {cell} 
               x = {x} 

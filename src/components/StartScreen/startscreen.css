@@ -9,22 +9,24 @@
   }
 
 .modal-header {
-    display: inline-block; 
+    display: inline-block;
+    background-image: url(./bg-title.png);
+    color: white;
 }
 .modal-content {
     background-color:#f8fafb;
 }
 
-.red{
+.redly{
     width: 80px;
     height: 80px;
     background-image: url(../Board/red.png);
     margin: 0 auto;
   }
 
-  .blue{
+.bluishly{
     width: 80px;
     height: 80px;
     background-image: url(../Board/blue.png);
     margin: 0 auto;
-  }
+}

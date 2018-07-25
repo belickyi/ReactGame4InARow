@@ -8,8 +8,8 @@ import Table from '../Table/Table';
 
 export default class Board extends Component {
 
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
     this.state = {
       grid : [
@@ -22,8 +22,11 @@ export default class Board extends Component {
         [0, 0, 0, 0, 0, 0],
       ],
 
-      countStep : 0
+      countStep : 0,
+
+      nextPlayer : this.props.location.state.userName1
     };
+
   };
 
   /*** 
@@ -40,21 +43,33 @@ export default class Board extends Component {
         [0, 0, 0, 0, 0, 0],
         [0, 0, 0, 0, 0, 0],
       ],
-      countStep : 0
+      countStep : 0,
     })
   };
 
   /****
    * This function gets columId, playerId and change their
    */
-  addStep(columId, playerId) {
+  addStep(columId) {
 
     // Add sum step +1
     this.setState({
       countStep : this.state.countStep + 1
     });
 
+    // nextPlayer
+    if (this.state.countStep % 2 === 1) {
+      this.setState({
+        nextPlayer: this.props.location.state.userName1
+      })
+    } else {
+      this.setState({
+        nextPlayer: this.props.location.state.userName2
+      })
+    }
+    
     // PlayerID
+    let playerId;
     this.state.countStep % 2 === 0 ? playerId = 1 : playerId = 2;
 
     // Add step in grid
@@ -70,86 +85,42 @@ export default class Board extends Component {
     })
 
     // Search 4 in a column
-    this.state.grid.forEach((column) => { // [0, 1, 0, 0, 0, 0]
-      let lastCell = 0; // Предыдущая
-      let inRow = 0; // Сколько вхождений
-
-      column.forEach((cell) => { // [1]
-
-        if (cell === lastCell & cell !== 0 ) { // Если ячейка ровна предыдущей inRow++
-          inRow++;
-          if (inRow == 3) { 
-            alert(`URAAAA ${cell}`);
-            return this.restartGame();
-          }
-        } else {
-          inRow = 0;
-        };
-        lastCell = cell;
-
-      });
-      
-    });
-
-    // Search 4 in a row
-    for (let i = 0; i < this.state.grid[0].length; i++) { // [0, 1, 0, 0, 0, 0, 0]
-      let lastCell = 0; // Предыдущая
-      let inRow = 0; // Сколько вхождений
-
-      for (let index = 0; index < this.state.grid.length; index++) { // [0]
-        let cell = this.state.grid[index][i];
-
-        if (cell === lastCell & cell !== 0 ) { // Если ячейка ровна предыдущей inRow++
-          inRow++;
-          if (inRow == 3) { 
-            alert(`URAAAA ${cell}`);
-            return this.restartGame();
-          }
-        } else {
-          inRow = 0;
-        };
-        lastCell = cell;
-      }
-      
-    }
-
-    // Search 4 in a diagonal
-    for (let x = 0; x < this.state.grid[0].length; x++) { // [0, 1, 0, 0, 0, 0, 0]
-      let lastCell = 0; // Предыдущая
-      let inRow = 0; // Сколько вхождений
-
-      for (let y = 0; y < this.state.grid.length; y++) {
-        let cell = this.state.grid[x][y];
-
-        if (cell === lastCell & cell !== 0 ) { // Если ячейка ровна предыдущей inRow++
-          inRow++;
-          if (inRow == 3) { 
-            alert(`URAAAA ${cell}`);
-            return this.restartGame();
-          }
-        } else {
-          inRow = 0;
-        };
-        lastCell = cell;
-      };
-
-    };
-
+    console.log('sad')
 
 
   };
 
   render() {
+
     const {state} = this.props.location;
     if (!state || !state.fromStartScreen) {
       return (<Redirect to="/" />);
     }
+
     return (
       <div className="App col">
         <div className='row justify-content-between'>
 
+          <div className='row col-12 justify-content-between'> {/* button */}
+            <div className='col-2'>
+            </div>
+
+
+            <div className='mt-4 col-4 nextPlayer'>
+              <span className=''>{`Ход игрока : ${this.state.nextPlayer}`}</span>
+            </div>
+
+
+            <div className='col-4 mt-4 buttons'>
+              <button className='btn btn-indigo btn-sm' onClick={this.restartGame.bind(this)}>Restart game</button>
+              <button className='btn btn-indigo btn-sm' onClick={this.restartGame.bind(this)}>Restart game</button>
+            </div>
+            <div className='col-2'>
+            </div>
+          </div>
+
           <div className='left col-2'> {/* left column */}
-            <div className='red'></div>
+            <div className='redly'></div>
             <div className="score">
               <span className='name'>{`${state.userName1}:`}</span>
               <br></br>
@@ -164,7 +135,7 @@ export default class Board extends Component {
           </div>
 
           <div className='right col-2'> {/* right column */}
-            <div className='blue'></div>
+            <div className='bluishly'></div>
             <div className="score">
               <span className='name'>{`${state.userName2}:`}</span>
               <br></br>
@@ -172,14 +143,8 @@ export default class Board extends Component {
               <span>0</span>              
             </div>
           </div>
-          
-          <div className='row col-12'> {/* button */}
-            <div className='col-2'>
-            </div>
-            <div className='mt-4'>
-              <button className='btn-lg btn-primary' onClick={this.restartGame.bind(this)}>New game</button>
-            </div>
-          </div>
+
+
 
         </div>
       </div>

@@ -4,6 +4,9 @@ import Board from './Board/Board'
 import Startscreen from './StartScreen/StartScreen'
 import GameOver from './GameOver/GameOver'
 import './StartScreen/startscreen.css'
+import 'font-awesome/css/font-awesome.min.css';
+import 'bootstrap/dist/css/bootstrap.min.css'; 
+import 'mdbreact/dist/css/mdb.css';
 
 
 // Router component

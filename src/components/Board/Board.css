@@ -1,21 +1,21 @@
 .App {
   text-align: center;
   background-image: url(./bg.png);
-  height: 770px;
+  height: 850px;
   border-radius: 5px;
   border-radius: 2px;
   box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
   transition: all 0.3s cubic-bezier(.25,.8,.25,1);
 }
 
-.red{
+.redly{
   width: 80px;
   height: 80px;
   background-image: url(./red.png);
   margin: 0 auto;
 }
 
-.blue{
+.bluishly{
   width: 80px;
   height: 80px;
   background-image: url(./blue.png);
@@ -55,4 +55,16 @@
 .name {
   font-size: 30px;
   font-weight: bold;
+}
+
+.nextPlayer{
+  font-size: 24px;
+  text-align: left;
+  border-radius: 8px;
+  padding: 20px 10px;
+  font-weight: bold;
+}
+
+.buttons {
+  text-align: right;
 }

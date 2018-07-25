@@ -30,6 +30,7 @@ export default class StartScreen extends Component {
     })
   };
   
+  
   render() {
     return (
       <div>
@@ -49,7 +50,7 @@ export default class StartScreen extends Component {
                     <br></br>
                   </div>
                   <div className='col-6'>
-                    <div className='red'></div>
+                    <div className='redly'></div>
                   </div>
                 </div>
                 
@@ -60,7 +61,7 @@ export default class StartScreen extends Component {
                     <br></br>
                   </div>
                   <div className='col-6'>
-                    <div className='blue'></div>
+                    <div className='bluishly'></div>
                   </div>
                 </div>
 
@@ -73,7 +74,7 @@ export default class StartScreen extends Component {
                       userName2: this.state.userName2
                     }
                     }}>
-                    <button className="btn btn-primary">Новая игра</button>
+                    <button className="btn btn-outline-danger waves-effect">Новая игра</button>
                   </Link>
                 </div>
 
