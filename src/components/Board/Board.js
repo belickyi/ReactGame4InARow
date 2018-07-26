@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import './Board.css';
 import { Redirect } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+
 // Components
 import Table from '../Table/Table';
 
@@ -73,10 +75,12 @@ export default class Board extends Component {
     this.state.countStep % 2 === 0 ? playerId = 1 : playerId = 2;
 
     // Add step in grid
+    var cellId;
     let newArr = this.state.grid;
     for (let i = 5; i >= 0; i--) {
       if (newArr[columId][i] === 0) {
-        newArr[columId][i] = playerId
+        newArr[columId][i] = playerId;
+        cellId = i;
         break;
       }
     }
@@ -85,8 +89,38 @@ export default class Board extends Component {
     })
 
     // Search 4 in a column
-    console.log('sad')
+    var cell = this.state.grid[columId][cellId];
+    let countGor = 0;
+    let countVer = 0;
 
+    for (let x = 0; x < this.state.grid.length; x++) {
+
+      // горизонталь
+      if (this.state.grid[x][cellId] === cell) {
+        // если ячейка перебора совпадает с номером игрока
+        countGor++;
+        if (countGor === 4) { alert('Uraaa goriz!!'); this.restartGame(); }
+      } else {
+        countGor = 0;
+      }
+
+      // вертикаль
+      if (this.state.grid[columId][x] === cell) {
+        // если ячейка перебора совпадает с номером игрока
+        countVer++;
+        console.log(countVer);
+        if (countVer === 4) { alert('Uraaa vertical!!'); this.restartGame(); }
+      } else {
+        countVer = 0;
+      }
+      
+      // диагональ
+
+
+      
+    }
+    
+    
 
   };
 
@@ -100,29 +134,23 @@ export default class Board extends Component {
     return (
       <div className="App col">
         <div className='row justify-content-between'>
-
-          <div className='row col-12 justify-content-between'> {/* button */}
+          <div className='row col-12'> {/* button */}
             <div className='col-2'>
             </div>
-
-
-            <div className='mt-4 col-4 nextPlayer'>
-              <span className=''>{`Ход игрока : ${this.state.nextPlayer}`}</span>
+          
+            <div className='mt-4 buttons'>
+              <button className='btn btn-light-blue' onClick={this.restartGame.bind(this)}><i className="fa fa-repeat mr-3"></i>Начать заного</button>
+              <Link to={{pathname: '/'}}>
+                    <button className="btn btn-mdb-color"><i className="fa fa-tasks mr-3"></i>На главную</button>
+              </Link>
             </div>
-
-
-            <div className='col-4 mt-4 buttons'>
-              <button className='btn btn-indigo btn-sm' onClick={this.restartGame.bind(this)}>Restart game</button>
-              <button className='btn btn-indigo btn-sm' onClick={this.restartGame.bind(this)}>Restart game</button>
-            </div>
-            <div className='col-2'>
-            </div>
+          
           </div>
 
           <div className='left col-2'> {/* left column */}
             <div className='redly'></div>
             <div className="score">
-              <span className='name'>{`${state.userName1}:`}</span>
+              <span className='name'>{`${state.userName1} :`}</span>
               <br></br>
               <span>Score </span>
               <span>0</span>
@@ -137,14 +165,21 @@ export default class Board extends Component {
           <div className='right col-2'> {/* right column */}
             <div className='bluishly'></div>
             <div className="score">
-              <span className='name'>{`${state.userName2}:`}</span>
+              <span className='name'>{`${state.userName2} :`}</span>
               <br></br>
               <span>Score </span>
               <span>0</span>              
             </div>
           </div>
 
+          <div className='row col-12'> {/* button */}
+            <div className='col-2'>
+            </div>
 
+            <div className='mt-2 col-4 nextPlayer'>
+              <span className=''>{`Ход игрока : ${this.state.nextPlayer}`}</span>
+            </div>
+          </div>
 
         </div>
       </div>
