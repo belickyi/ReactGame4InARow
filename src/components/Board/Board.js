@@ -108,20 +108,19 @@ export default class Board extends Component {
       if (this.state.grid[columId][x] === cell) {
         // если ячейка перебора совпадает с номером игрока
         countVer++;
-        console.log(countVer);
         if (countVer === 4) { alert('Uraaa vertical!!'); this.restartGame(); }
       } else {
         countVer = 0;
       }
-      
-      // диагональ
-
-
-      
     }
-    
-    
 
+      // диагональ с лево на право
+      // if ( (columId - x) >= 0 & (cellId + x) <= 5  ) {
+      //   console.log(`Вариант первый ${columId - x}, ${cellId + x}`)
+      // }
+
+      let firstCellInDiag = 5 - cellId;
+      console.log(firstCellInDiag)
   };
 
   render() {
