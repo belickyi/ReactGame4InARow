@@ -14,6 +14,8 @@ export default class Board extends Component {
     super(props);
 
     this.state = {
+
+      // сетка
       grid : [
         [0, 0, 0, 0, 0, 0],
         [0, 0, 0, 0, 0, 0],
@@ -24,9 +26,18 @@ export default class Board extends Component {
         [0, 0, 0, 0, 0, 0],
       ],
 
+      // Количество сделанных ходов
       countStep : 0,
 
-      nextPlayer : this.props.location.state.userName1
+      // Имя следующего игрока
+      nextPlayer : this.props.location.state.userName1,
+
+      // Очки игрока № 1
+      score1 : 0,
+
+      // Очки игрока № 2
+      score2 : 0
+
     };
 
   };
@@ -50,7 +61,7 @@ export default class Board extends Component {
   };
 
   /****
-   * This function gets columId, playerId and change their
+   * This function gets columId
    */
   addStep(columId) {
 
@@ -62,11 +73,11 @@ export default class Board extends Component {
     // nextPlayer
     if (this.state.countStep % 2 === 1) {
       this.setState({
-        nextPlayer: this.props.location.state.userName1
+        nextPlayer: this.props.location.state.userName1,
       })
     } else {
       this.setState({
-        nextPlayer: this.props.location.state.userName2
+        nextPlayer: this.props.location.state.userName2,
       })
     }
     
@@ -105,7 +116,7 @@ export default class Board extends Component {
       if (this.state.grid[x][cellId] === cell && this.state.grid[x][cellId] !== undefined) {
         // если ячейка перебора совпадает с номером игрока
         countGor++;
-        if (countGor === 4) {alert('Uraaa goriz!!'); this.restartGame(); } // пофиксить проблему с переизбытком массива!!!!
+        if (countGor === 4) { alert(`Игрок : ${this.state.nextPlayer} получает очко!`); this.restartGame(); }
       } else {
         countGor = 0;
       }
@@ -114,7 +125,11 @@ export default class Board extends Component {
       if (this.state.grid[columId][x] === cell) {
         // если ячейка перебора совпадает с номером игрока
         countVer++;
-        if (countVer === 4) { alert('Uraaa vertical!!'); this.restartGame(); }
+        if (countVer === 4) { 
+          cell === 1 ? this.state.score1++ : this.state.score2++;
+          alert(`Игрок : ${this.state.nextPlayer} получает очко!`);
+          this.restartGame(); 
+        }
       } else {
         countVer = 0;
       }
@@ -139,7 +154,7 @@ export default class Board extends Component {
           if (this.state.grid[firstColRight + x][firstCelRight - x] === cell) {
             // если ячейка перебора совпадает с номером игрока
             countDiag++;
-            if (countDiag === 4) { alert('Uraaa diagonal!!'); this.restartGame(); }
+            if (countDiag === 4) { alert(`Игрок : ${this.state.nextPlayer} получает очко!`); this.restartGame(); }
           } else {
             countDiag = 0;
           }
@@ -166,7 +181,7 @@ export default class Board extends Component {
           if (this.state.grid[firstColLeft - x][firstCelLeft - x] === cell) {
             // если ячейка перебора совпадает с номером игрока
             countDiagLeft++;
-            if (countDiagLeft === 4) { alert('Uraaa diagonal right!!'); this.restartGame(); }
+            if (countDiagLeft === 4) { alert(`Игрок : ${this.state.nextPlayer} получает очко!`); this.restartGame(); }
           } else {
             countDiagLeft = 0;
           }
@@ -181,7 +196,14 @@ export default class Board extends Component {
     const {state} = this.props.location;
     if (!state || !state.fromStartScreen) {
       return (<Redirect to="/" />);
-    }
+    };
+
+    if (this.state.score1 === 3 || this.state.score2 === 3) {
+      return (<Redirect to={{
+        pathname: '/gameover',
+        state: ''
+      }} />);
+    };
 
     return (
       <div className="App col">
@@ -205,7 +227,7 @@ export default class Board extends Component {
               <span className='name'>{`${state.userName1} :`}</span>
               <br></br>
               <span>Score </span>
-              <span>0</span>
+              <span>{this.state.score1}</span>
             </div>
           </div>
 
@@ -220,7 +242,7 @@ export default class Board extends Component {
               <span className='name'>{`${state.userName2} :`}</span>
               <br></br>
               <span>Score </span>
-              <span>0</span>              
+              <span>{this.state.score2}</span>              
             </div>
           </div>
 

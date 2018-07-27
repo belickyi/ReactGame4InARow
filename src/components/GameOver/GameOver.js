@@ -6,11 +6,11 @@ import { Link } from 'react-router-dom'
 export default class GameOver extends Component {
 
   render() {
-
+    console.log(this.state)
     return (
         <div>
             <div>Game over</div>
-            <div>Player 1 wins</div>
+            <div></div>
 
             <Link to={{
                 pathname: '/',
