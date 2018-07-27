@@ -92,14 +92,20 @@ export default class Board extends Component {
     var cell = this.state.grid[columId][cellId];
     let countGor = 0;
     let countVer = 0;
+    let countDiag = 0;
+    let countDiagLeft = 0;
+    var firstColRight = 0;
+    var firstCelRight = 0;
+    var firstColLeft = 0;
+    var firstCelLeft = 0;
 
     for (let x = 0; x < this.state.grid.length; x++) {
 
       // горизонталь
-      if (this.state.grid[x][cellId] === cell) {
+      if (this.state.grid[x][cellId] === cell && this.state.grid[x][cellId] !== undefined) {
         // если ячейка перебора совпадает с номером игрока
         countGor++;
-        if (countGor === 4) { alert('Uraaa goriz!!'); this.restartGame(); }
+        if (countGor === 4) {alert('Uraaa goriz!!'); this.restartGame(); } // пофиксить проблему с переизбытком массива!!!!
       } else {
         countGor = 0;
       }
@@ -112,15 +118,62 @@ export default class Board extends Component {
       } else {
         countVer = 0;
       }
-    }
 
       // диагональ с лево на право
-      // if ( (columId - x) >= 0 & (cellId + x) <= 5  ) {
-      //   console.log(`Вариант первый ${columId - x}, ${cellId + x}`)
-      // }
 
-      let firstCellInDiag = 5 - cellId;
-      console.log(firstCellInDiag)
+      // находим начальную точку диагонали
+
+      if (x === 0) {
+        for (let index = 0; index < 7; index++) {
+          if (this.state.grid[columId - index] !== undefined) {
+            if (this.state.grid[columId - index][cellId + index] !== undefined) {
+              firstColRight = columId - index;
+              firstCelRight = cellId + index;
+            }
+          }
+        }
+      }
+
+      if (this.state.grid[firstColRight + x] !== undefined) {
+        if (this.state.grid[firstColRight + x][firstCelRight - x] !== undefined) {
+          if (this.state.grid[firstColRight + x][firstCelRight - x] === cell) {
+            // если ячейка перебора совпадает с номером игрока
+            countDiag++;
+            if (countDiag === 4) { alert('Uraaa diagonal!!'); this.restartGame(); }
+          } else {
+            countDiag = 0;
+          }
+        }
+      }
+
+      // диагональ с право на лево
+
+      // находим начальную точку диагонали
+      
+      if (x === 0) {
+        for (let index = 0; index < 7; index++) {
+          if (this.state.grid[columId + index] !== undefined) {
+            if (this.state.grid[columId + index][cellId + index] !== undefined) {
+              firstColLeft = columId + index;
+              firstCelLeft = cellId + index;
+            }
+          }
+        }
+      }
+
+      if (this.state.grid[firstColLeft - x] !== undefined) {
+        if (this.state.grid[firstColLeft - x][firstCelLeft - x] !== undefined) {
+          if (this.state.grid[firstColLeft - x][firstCelLeft - x] === cell) {
+            // если ячейка перебора совпадает с номером игрока
+            countDiagLeft++;
+            if (countDiagLeft === 4) { alert('Uraaa diagonal right!!'); this.restartGame(); }
+          } else {
+            countDiagLeft = 0;
+          }
+        }
+      }
+
+    }
   };
 
   render() {
