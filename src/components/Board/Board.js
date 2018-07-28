@@ -116,7 +116,11 @@ export default class Board extends Component {
       if (this.state.grid[x][cellId] === cell && this.state.grid[x][cellId] !== undefined) {
         // если ячейка перебора совпадает с номером игрока
         countGor++;
-        if (countGor === 4) { alert(`Игрок : ${this.state.nextPlayer} получает очко!`); this.restartGame(); }
+        if (countGor === 4) { 
+          cell === 1 ? this.setState({score1: this.state.score1 + 1}) : this.setState({score2: this.state.score2 + 1});
+          alert(`Игрок : ${this.state.nextPlayer} получает очко!`); 
+          this.restartGame(); 
+        }
       } else {
         countGor = 0;
       }
@@ -126,7 +130,7 @@ export default class Board extends Component {
         // если ячейка перебора совпадает с номером игрока
         countVer++;
         if (countVer === 4) { 
-          cell === 1 ? this.state.score1++ : this.state.score2++;
+          cell === 1 ? this.setState({score1: this.state.score1 + 1}) : this.setState({score2: this.state.score2 + 1});
           alert(`Игрок : ${this.state.nextPlayer} получает очко!`);
           this.restartGame(); 
         }
@@ -154,7 +158,11 @@ export default class Board extends Component {
           if (this.state.grid[firstColRight + x][firstCelRight - x] === cell) {
             // если ячейка перебора совпадает с номером игрока
             countDiag++;
-            if (countDiag === 4) { alert(`Игрок : ${this.state.nextPlayer} получает очко!`); this.restartGame(); }
+            if (countDiag === 4) { 
+              cell === 1 ? this.setState({score1: this.state.score1 + 1}) : this.setState({score2: this.state.score2 + 1});
+              alert(`Игрок : ${this.state.nextPlayer} получает очко!`); 
+              this.restartGame(); 
+            }
           } else {
             countDiag = 0;
           }
@@ -181,7 +189,11 @@ export default class Board extends Component {
           if (this.state.grid[firstColLeft - x][firstCelLeft - x] === cell) {
             // если ячейка перебора совпадает с номером игрока
             countDiagLeft++;
-            if (countDiagLeft === 4) { alert(`Игрок : ${this.state.nextPlayer} получает очко!`); this.restartGame(); }
+            if (countDiagLeft === 4) { 
+              cell === 1 ? this.setState({score1: this.state.score1 + 1}) : this.setState({score2: this.state.score2 + 1});
+              alert(`Игрок : ${this.state.nextPlayer} получает очко!`); 
+              this.restartGame();
+            }
           } else {
             countDiagLeft = 0;
           }
@@ -198,10 +210,9 @@ export default class Board extends Component {
       return (<Redirect to="/" />);
     };
 
-    if (this.state.score1 === 3 || this.state.score2 === 3) {
+    if (this.state.score1 === 4 || this.state.score2 === 4) {
       return (<Redirect to={{
-        pathname: '/gameover',
-        state: ''
+        pathname: '/gameover'
       }} />);
     };
 

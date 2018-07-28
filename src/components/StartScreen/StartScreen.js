@@ -74,7 +74,7 @@ export default class StartScreen extends Component {
                       userName2: this.state.userName2
                     }
                     }}>
-                    <button className="btn btn-outline-danger waves-effect">Новая игра</button>
+                    <button className="btn btn-info btn-block my-4">Новая игра</button>
                   </Link>
                 </div>
 
